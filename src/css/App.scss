@@ -1,0 +1,23 @@
+.cc {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+#header {
+    @extend .cc;
+    width: 100%;
+    height: 25vh;
+    text-align: center;
+    h1 {
+        @extend .cc;
+    }
+}
+
+#display {
+    width: 100%;
+    #searchForm {
+        width: 50%;
+        margin: auto;
+    }
+}
