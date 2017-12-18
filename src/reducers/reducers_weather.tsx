@@ -7,7 +7,7 @@ import * as T from '../types';
 
 const defaultState: I.StoreState = {
     city: {name: '', country: ''},
-    weathers: [{
+    weather: [{
         date: '',
         time: 'string',
         humidity: 0,
@@ -25,14 +25,14 @@ export default (state: I.StoreState = defaultState, action: T.AWeather): I.Store
             const data = payload[_data];
             const { name, country } = data.city;
 
-            const weathers: I.Weather[] = [];
+            const weather: I.Weather[] = [];
             for (let i = 0; i < data.list.length; i = i + 3) {
                 let item = data.list[i];
                 let { dt_txt } = item;
                 let schedule = dt_txt ? dt_txt.split(' ') : '';
                 let { humidity, pressure, temp } = item.main;
 
-                weathers.push({
+                weather.push({
                     date: schedule[0],
                     time: schedule[1],
                     humidity,
@@ -43,12 +43,17 @@ export default (state: I.StoreState = defaultState, action: T.AWeather): I.Store
 
             return {
                 city: { name, country },
-                weathers,
+                weather,
                 error: 0
             };
+
         case ERROR_NOT_FOUND:
-            defaultState.error = 404;
-            return defaultState;
+            return {
+                city: defaultState.city,
+                weather: defaultState.weather,
+                error: 404
+            };
+
         default:
             return state;
     }

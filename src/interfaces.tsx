@@ -20,8 +20,13 @@ export interface City {
 
 export interface StoreState {
     city: City,
-    weathers: Weather[],
+    weather: Weather[],
     error: number
+}
+
+export interface ChartData {
+    labels: string[];
+    datasets: object[]
 }
 
 

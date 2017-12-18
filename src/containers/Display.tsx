@@ -10,28 +10,33 @@ import * as I from '../interfaces';
 
 class Display extends React.Component<any, any> {
 
-    render() {
-        const { weather: { city, weathers, error } } = this.props;
-
+    display() {
+        const { weather: { weather, error } } = this.props;
+        
         if (error !== 0) {
-            return (
-                <div id="display">
-                    <SearchForm />
-                    <ErrorMssg error={error} />
-                </div>
-            )
+            return <ErrorMssg error={error} />;
         }
 
+        if (weather.length === 1) {
+            return  <div>hai</div>;
+        }
+
+        return <Chart data={weather}/>;
+    }
+
+    render() {
         return(
             <div id="display">
-                {console.log(city)}
                 <SearchForm />
-                <Chart data={weathers}/>
+                error: {this.props.weather.error}
+                {this.display()}
             </div>
         );
     }
 }
 
-const mapStateToProps = (state: I.StoreState): I.StoreState => (state);
+const mapStateToProps = (state: I.StoreState): I.StoreState => {
+    return state;
+}
 
 export default connect(mapStateToProps, null)(Display);

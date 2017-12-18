@@ -19,10 +19,12 @@ export const fetchWeather = (searchValues: I.Search): T.AWeather | object => {
             type: FETCH_WEATHER,
             payload: res
         }))
-        .catch( error => ({
-            type: ERROR_NOT_FOUND,
-            payload: error.response.status
-        }));
+        .catch( error => {
+            return {
+                type: ERROR_NOT_FOUND,
+                payload: error.response.status
+            }
+        });
 
     return response;
 };
