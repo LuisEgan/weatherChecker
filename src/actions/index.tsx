@@ -9,10 +9,10 @@ import * as I from '../interfaces';
 // TYPES
 import * as T from '../types';
 
-export const fetchWeather = (searchValues: I.Search): T.AWeather | object => {
-    const { city, country } = searchValues;
+export const fetchWeather = (searchValues: I.City): T.AWeather | object => {
+    const { name, country } = searchValues;
     
-    const url: string = `${ROOT_URL}&q=${city},${country}`;
+    const url: string = `${ROOT_URL}&q=${name},${country}`;
 
     const response: T.AWeather | object = axios.get(url)
         .then( res => ({
@@ -20,10 +20,13 @@ export const fetchWeather = (searchValues: I.Search): T.AWeather | object => {
             payload: res
         }))
         .catch( error => {
-            return {
-                type: ERROR_NOT_FOUND,
-                payload: error.response.status
+            if (error.response) {
+                return {
+                    type: ERROR_NOT_FOUND,
+                    payload: error.response.status
+                };
             }
+            return;
         });
 
     return response;

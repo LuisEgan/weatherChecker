@@ -42,7 +42,6 @@ class Chart extends React.Component<any, any> {
 
     render() {
         const { data } = this.props;
-        console.log(data);
 
         const temps: number[] = data.map( (item: I.Weather) => Math.round(item.temp - 273));
         // const temps: string[] = data.map( (item: I.Weather) => (item.temp));
@@ -64,9 +63,7 @@ class Chart extends React.Component<any, any> {
         return (
             <div>
                 <h3>Starting at {data[0].date} to {data[data.length - 1].date}</h3>
-                <Line
-                    data={_data}
-                />
+                <Line data={_data} />
 
             </div>
         );

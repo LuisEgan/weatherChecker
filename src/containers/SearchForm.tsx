@@ -19,19 +19,21 @@ class SearchForm extends React.Component<any, any> {
 
     renderField(field: any) {
         const { meta: { touched, error }, label, input} = field;
-        let hadDanger = touched && error ? 'has-danger' : '';
+        let hadDanger = touched && error ? 'is-invalid' : '';
 
         if (label !== 'Country') {
             return(
-                <div className={`form-group ${hadDanger}`}>
+                <div className="col-sm-6">
                     <label htmlFor={label}>{label}</label>
                     <input
-                        className="form-control"
+                        className={`form-control ${hadDanger}`}
                         type="text"
                         name={label}
+                        id={label}
+                        required
                         {...input}
                     />
-                    <div className="text-help">
+                    <div className="invalid-feedback">
                         {touched ? error : ''}
                     </div>
                 </div>
@@ -39,7 +41,7 @@ class SearchForm extends React.Component<any, any> {
         }
 
         return(
-            <div className={`form-group ${hadDanger}`}>
+            <div className="col-sm-6">
                 <label htmlFor={label}>{label}</label>
                 <Countries label={label} {...input}/>
                 <div className="text-help">
@@ -49,7 +51,7 @@ class SearchForm extends React.Component<any, any> {
         );
     }
 
-    onSubmit(searchValues: I.Search) {
+    onSubmit(searchValues: I.City) {
         const { fetchWeather } = this.props;
     
         fetchWeather(searchValues);
@@ -58,29 +60,35 @@ class SearchForm extends React.Component<any, any> {
     render() {
         const { handleSubmit } = this.props;
         return(
-            <div>
-                <form onSubmit={handleSubmit(this.onSubmit)} id="searchForm">
-                    <Field
-                        label="City"
-                        name="city"
-                        component={this.renderField}
-                    />
-                    <Field
-                        label="Country"
-                        name="country"
-                        component={this.renderField}
-                    />
-                    <span className="input-group-btn">
-                        <button className="btn btn-secondary">Check the weather!</button>
-                    </span>
+            <div className="container">
+                <form onSubmit={handleSubmit(this.onSubmit)} id="" noValidate>
+                    <div className="row">
+                        <Field label="City" name="name" component={this.renderField} />
+                        <Field label="Country" name="country" component={this.renderField} />
+                    </div>
+                    <div className="row">
+                        <div className="col-sm-12 cc">
+                            <button type="button" className="btn btn-outline-success">Check the weather!</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         );
     }
 }
 
-const validate = (values: I.Search): object => {
+const validate = (values: I.City): object => {
     const errors: object = {};
+
+    if (!values.name) {
+        let _i = 'name';
+        errors[_i] = 'You must specify a city!';
+    }
+
+    if (!values.country) {
+        let _i = 'country';
+        errors[_i] = 'You must specify a country!';
+    }
     
     return errors;
 };

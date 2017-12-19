@@ -28,7 +28,6 @@ class Display extends React.Component<any, any> {
         return(
             <div id="display">
                 <SearchForm />
-                error: {this.props.weather.error}
                 {this.display()}
             </div>
         );
