@@ -4,6 +4,15 @@
     align-content: center;
 }
 
+.btn-container {
+    padding: 2%;
+    .btn {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
 #header {
     @extend .cc;
     width: 100%;

@@ -19,14 +19,14 @@ class SearchForm extends React.Component<any, any> {
 
     renderField(field: any) {
         const { meta: { touched, error }, label, input} = field;
-        let hadDanger = touched && error ? 'is-invalid' : '';
+        let isInvalid = touched && error ? 'is-invalid' : '';
 
         if (label !== 'Country') {
             return(
                 <div className="col-sm-6">
                     <label htmlFor={label}>{label}</label>
                     <input
-                        className={`form-control ${hadDanger}`}
+                        className={`form-control ${isInvalid}`}
                         type="text"
                         name={label}
                         id={label}
@@ -43,8 +43,8 @@ class SearchForm extends React.Component<any, any> {
         return(
             <div className="col-sm-6">
                 <label htmlFor={label}>{label}</label>
-                <Countries label={label} {...input}/>
-                <div className="text-help">
+                <Countries label={label} isinvalid={isInvalid} {...input}/>
+                <div className="invalid-feedback">
                     {touched ? error : ''}
                 </div>
             </div>
@@ -67,8 +67,8 @@ class SearchForm extends React.Component<any, any> {
                         <Field label="Country" name="country" component={this.renderField} />
                     </div>
                     <div className="row">
-                        <div className="col-sm-12 cc">
-                            <button type="button" className="btn btn-outline-success">Check the weather!</button>
+                        <div className="col-sm-12 cc btn-container">
+                            <button className="btn btn-outline-success">Check the weather!</button>
                         </div>
                     </div>
                 </form>

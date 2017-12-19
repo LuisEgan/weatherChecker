@@ -2,14 +2,16 @@ import * as React from 'react';
 
 interface CProps {
     label: string;
+    isinvalid: string;
 }
 
 interface CState {}
 
 class Countries extends React.Component<CProps, CState> {
     render() {
+        const { label, isinvalid } = this.props;
         return(
-            <select className="form-control" name={this.props.label} {...this.props}>
+            <select className={`form-control ${isinvalid}`} name={label} {...this.props}>
                 <option value="" />
                 <option value="AF">Afghanistan</option>
                 <option value="AX">Åland Islands</option>
