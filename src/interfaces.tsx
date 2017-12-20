@@ -11,12 +11,6 @@ export interface City {
     country: string
 }
 
-export interface StoreState {
-    city: City,
-    weather: Weather[],
-    error: number
-}
-
 export interface ChartData {
     labels: string[];
     datasets: object[]

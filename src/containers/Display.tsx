@@ -5,23 +5,25 @@ import SearchForm from '../containers/SearchForm';
 import Chart from '../components/Chart';
 import ErrorMssg from '../components/ErrorMssg';
 
-// INTERFACES
-import * as I from '../interfaces';
+// STORE
+import { Store } from '../reducers/Store';
 
-class Display extends React.Component<any, any> {
+class Display extends React.Component<Store.All, {}> {
 
     display() {
-        const { weather: { weather, error } } = this.props;
+        const { allWeathers } = this.props;
         
+        let error = allWeathers[0].error;
+
         if (error !== 0) {
             return <ErrorMssg error={error} />;
         }
 
-        if (weather.length === 1) {
+        if (allWeathers.length === 1) {
             return  <div>hai</div>;
         }
 
-        return <Chart data={weather}/>;
+        return <Chart allWeathers={allWeathers}/>;
     }
 
     render() {
@@ -34,8 +36,8 @@ class Display extends React.Component<any, any> {
     }
 }
 
-const mapStateToProps = (state: I.StoreState): I.StoreState => {
+const mapStateToProps = (state: Store.All): Store.All => {
     return state;
-}
+};
 
-export default connect(mapStateToProps, null)(Display);
+export default connect<Store.All, {}, {}>(mapStateToProps, {})(Display);

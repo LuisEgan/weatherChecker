@@ -6,15 +6,15 @@ const ROOT_URL: string = `http://api.openweathermap.org/data/2.5/forecast?APPID=
 
 // INTERFACES
 import * as I from '../interfaces';
-// TYPES
-import * as T from '../types';
+// ACTIONS
+import * as Actions from './types';
 
-export const fetchWeather = (searchValues: I.City): T.AWeather | object => {
+export const fetchWeather = (searchValues: I.City): Actions.AWeather | object => {
     const { name, country } = searchValues;
     
     const url: string = `${ROOT_URL}&q=${name},${country}`;
 
-    const response: T.AWeather | object = axios.get(url)
+    const response: Actions.AWeather | object = axios.get(url)
         .then( res => ({
             type: FETCH_WEATHER,
             payload: res

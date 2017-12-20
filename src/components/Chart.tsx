@@ -4,27 +4,10 @@ import { Line } from 'react-chartjs-2';
 // INTERFACES
 import * as I from '../interfaces';
 
-// const data = {
-//     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'ayy'],
-//     datasets: [
-//         {
-//             label: '# of Votes',
-//             data: [12, 19, 3, 5, 2, 3],
-//             backgroundColor: 'rgba(255, 99, 132, 0.2)',
-//             borderColor: 'rgba(255,99,132,1)',
-//             borderWidth: 1
-//         },
-//         {
-//             label: 'Temperature',
-//             data: [120, 19, 3, 5, 2, 3],
-//             backgroundColor: 'rgba(25, 99, 132, 0.2)',
-//             borderColor: 'rgba(255,99,132,1)',
-//             borderWidth: 1
-//         },
-//     ]
-// };
+// STORE
+import { Store } from '../reducers/Store';
 
-class Chart extends React.Component<any, any> {
+class Chart extends React.Component<Store.All, {}> {
 
     shortenTime(_time: string): string {
         let time = parseInt(_time, 10);
@@ -41,14 +24,14 @@ class Chart extends React.Component<any, any> {
     }
 
     render() {
-        const { data } = this.props;
+        const { allWeathers } = this.props;
 
-        const temps: number[] = data.map( (item: I.Weather) => Math.round(item.temp - 273));
+        const temps: number[] = allWeathers.map( (item: I.Weather) => Math.round(item.temp - 273));
         // const temps: string[] = data.map( (item: I.Weather) => (item.temp));
         // const temps: string[] = data.map( (item: I.Weather) => (item.temp));
 
         const _data: I.ChartData = {
-            labels: data.map( (item: I.Weather) => (this.shortenTime(item.time))),
+            labels: allWeathers.map( (item: I.Weather) => (this.shortenTime(item.time))),
             datasets: [
                 {
                     label: 'Temperature',
@@ -62,7 +45,7 @@ class Chart extends React.Component<any, any> {
         
         return (
             <div>
-                <h3>Starting at {data[0].date} to {data[data.length - 1].date}</h3>
+                <h3>Starting at {allWeathers[0].date} to {allWeathers[allWeathers.length - 1].date}</h3>
                 <Line data={_data} />
 
             </div>

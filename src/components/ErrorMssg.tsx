@@ -1,6 +1,10 @@
 import * as React from 'react';
 
-class ErrorMssg extends React.Component<any, any> {
+interface OwnProps {
+    error: number;
+}
+
+class ErrorMssg extends React.Component<OwnProps, {}> {
     render() {
         const { error } = this.props;
         let mssg = '';

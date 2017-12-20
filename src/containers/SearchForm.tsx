@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, FormErrors } from 'redux-form';
 import Countries from '../components/Countries';
 
 // ACTIONS
@@ -9,9 +9,20 @@ import { fetchWeather } from '../actions';
 // INTERFACES
 import * as I from '../interfaces';
 
-class SearchForm extends React.Component<any, any> {
+// STORE
+import { Store } from '../reducers/Store';
 
-    constructor(props: any) {
+interface ConnectState {
+    fetchWeather: (searchValues: I.City) => void;
+}
+
+interface FormState {
+    handleSubmit: any;
+}
+
+class SearchForm extends React.Component<ConnectState & FormState & Store.All , {}> {
+
+    constructor(props: ConnectState & FormState & Store.All) {
         super(props);
 
         this.onSubmit = this.onSubmit.bind(this);
@@ -30,7 +41,7 @@ class SearchForm extends React.Component<any, any> {
                         type="text"
                         name={label}
                         id={label}
-                        required
+                        required={true}
                         {...input}
                     />
                     <div className="invalid-feedback">
@@ -61,7 +72,7 @@ class SearchForm extends React.Component<any, any> {
         const { handleSubmit } = this.props;
         return(
             <div className="container">
-                <form onSubmit={handleSubmit(this.onSubmit)} id="" noValidate>
+                <form onSubmit={handleSubmit(this.onSubmit)} id="">
                     <div className="row">
                         <Field label="City" name="name" component={this.renderField} />
                         <Field label="Country" name="country" component={this.renderField} />
@@ -77,8 +88,8 @@ class SearchForm extends React.Component<any, any> {
     }
 }
 
-const validate = (values: I.City): object => {
-    const errors: object = {};
+const validate = (values: I.City): FormErrors<I.City> => {
+    const errors: FormErrors<I.City> = {};
 
     if (!values.name) {
         let _i = 'name';
@@ -93,11 +104,11 @@ const validate = (values: I.City): object => {
     return errors;
 };
 
-const mapStateToProps = (state: I.StoreState): I.StoreState => (state);
+const mapStateToProps = (state: Store.All): Store.All => (state);
 
 export default reduxForm({
     form: 'searchForm',
     validate
 })(
-    connect<any, any, any>(mapStateToProps, { fetchWeather })(SearchForm)
+    connect<Store.All, ConnectState, any>(mapStateToProps, { fetchWeather })(SearchForm)
 );
