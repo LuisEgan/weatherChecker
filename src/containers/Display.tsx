@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import SearchForm from '../containers/SearchForm';
 import Chart from '../components/Chart';
 import ErrorMssg from '../components/ErrorMssg';
+import Welcome from '../components/Welcome';
 
 // STORE
 import { Store } from '../reducers/Store';
@@ -20,10 +21,12 @@ class Display extends React.Component<Store.All, {}> {
         }
 
         if (allWeathers.length === 1) {
-            return  <div>hai</div>;
+            return  <Welcome />;
+            // return <Chart allWeathers={allWeathers}/>;
         }
 
         return <Chart allWeathers={allWeathers}/>;
+        // return  <Welcome />;
     }
 
     render() {
@@ -31,6 +34,12 @@ class Display extends React.Component<Store.All, {}> {
             <div id="display">
                 <SearchForm />
                 {this.display()}
+                <footer>
+                    - Luis Egan -
+                    <br/>
+                    <a href="https://www.linkedin.com/in/luis-egan-565401127/"><i className="fa fa-linkedin-square" aria-hidden="true"></i></a>
+                    <a href="https://github.com/LuisEgan/"><i className="fa fa-github" aria-hidden="true"></i></a>                    
+                </footer>
             </div>
         );
     }

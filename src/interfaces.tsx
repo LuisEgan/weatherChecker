@@ -12,8 +12,8 @@ export interface City {
 }
 
 export interface ChartData {
-    labels: string[];
-    datasets: object[]
+    labels: string[],
+    datasets: object[],
 }
 
 

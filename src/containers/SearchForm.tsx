@@ -20,6 +20,8 @@ interface FormState {
     handleSubmit: any;
 }
 
+type TField = any;
+
 class SearchForm extends React.Component<ConnectState & FormState & Store.All , {}> {
 
     constructor(props: ConnectState & FormState & Store.All) {
@@ -28,7 +30,7 @@ class SearchForm extends React.Component<ConnectState & FormState & Store.All , 
         this.onSubmit = this.onSubmit.bind(this);
     }
 
-    renderField(field: any) {
+    renderField(field: TField) {
         const { meta: { touched, error }, label, input} = field;
         let isInvalid = touched && error ? 'is-invalid' : '';
 

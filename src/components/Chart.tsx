@@ -40,14 +40,27 @@ class Chart extends React.Component<Store.All, {}> {
                     borderColor: 'rgba(255,99,132,1)',
                     borderWidth: 1
                 }
-            ]
+            ],
         };
         
         return (
-            <div>
-                <h3>Starting at {allWeathers[0].date} to {allWeathers[allWeathers.length - 1].date}</h3>
-                <Line data={_data} />
-
+            <div className="container" id="chart">
+                <div className="row">
+                    <div className="col-sm-12">
+                        <h3>Starting at {allWeathers[0].date} to {allWeathers[allWeathers.length - 1].date}</h3>                    
+                    </div>
+                    <div className="col-1 cc">
+                        <div className="chartLabel" id="yLabel">Temperature in °C</div>
+                    </div>
+                    <div className="col-11">
+                        <Line data={_data} />
+                    </div>
+                    <div className="col-1">
+                    </div>
+                    <div className="col-11 cc">
+                        <div className="chartLabel">Time (9 hours interval)</div>
+                    </div>
+                </div>
             </div>
         );
     }
