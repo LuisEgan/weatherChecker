@@ -12,7 +12,16 @@
     "react-redux": "^5.0.6",
     "react-scripts-ts": "^2.8.0",
     "redux-form": "^7.2.0",
-    "redux-promise": "^0.5.3"
+    "redux-promise": "^0.5.3",
+    "@types/jest": "^21.1.8",
+    "@types/lodash": "^4.14.88",
+    "@types/node": "^8.0.57",
+    "@types/react": "^16.0.28",
+    "@types/react-chartjs-2": "^2.0.2",
+    "@types/react-dom": "^16.0.3",
+    "@types/react-redux": "^5.0.14",
+    "@types/redux-form": "^7.0.9",
+    "@types/redux-promise": "^0.5.28"
   },
   "scripts": {
     "start": "react-scripts-ts start",
