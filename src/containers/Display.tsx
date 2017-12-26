@@ -37,8 +37,8 @@ class Display extends React.Component<Store.All, {}> {
                 <footer>
                     - Luis Egan -
                     <br/>
-                    <a href="https://www.linkedin.com/in/luis-egan-565401127/"><i className="fa fa-linkedin-square" aria-hidden="true"></i></a>
-                    <a href="https://github.com/LuisEgan/"><i className="fa fa-github" aria-hidden="true"></i></a>                    
+                    <a href="https://www.linkedin.com/in/luis-egan-565401127/"><i className="fa fa-linkedin-square" aria-hidden="true" /></a>
+                    <a href="https://github.com/LuisEgan/"><i className="fa fa-github" aria-hidden="true" /></a>                    
                 </footer>
             </div>
         );

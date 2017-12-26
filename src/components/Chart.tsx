@@ -55,8 +55,7 @@ class Chart extends React.Component<Store.All, {}> {
                     <div className="col-11">
                         <Line data={_data} />
                     </div>
-                    <div className="col-1">
-                    </div>
+                    <div className="col-1" />
                     <div className="col-11 cc">
                         <div className="chartLabel">Time (9 hours interval)</div>
                     </div>
