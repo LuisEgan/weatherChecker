@@ -11,7 +11,7 @@ class ErrorMssg extends React.Component<OwnProps, {}> {
 
         switch (error) {
             case 404:
-                mssg = 'We couldn\'t find that city in that country!';
+                mssg = 'We couldn\'t find that city in that country! PAPI!';
                 break;
             default:
                 return mssg;
